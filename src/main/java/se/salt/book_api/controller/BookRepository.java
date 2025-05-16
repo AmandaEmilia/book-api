@@ -6,7 +6,7 @@ import java.util.List;
 
 @Repository
 public class BookRepository {
-    public List<Book> findBooks() {
+    public List<Book> findAll() {
         List<Book> books = List.of(
                 Book.builder()
                         .id(1L)
@@ -140,6 +140,5 @@ public class BookRepository {
 
         return books;
     }
-
 
 }
