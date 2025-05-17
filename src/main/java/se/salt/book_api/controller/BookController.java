@@ -19,31 +19,26 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    // 1. Lista alla böcker
     @GetMapping
     public List<Book> getAllBooks() {
         return bookService.getAllBooks();
     }
 
-    // 2. Hämta en bok via ID
     @GetMapping("/{id}")
     public Book getBookById(@PathVariable Long id) {
-        return bookService.getBookById(id); // kastar fel om boken inte finns
+        return bookService.getBookById(id);
     }
 
-    // 3. Lista alla författare
     @GetMapping("/authors")
     public List<String> getAllAuthors() {
         return bookService.getAllAuthors();
     }
 
-    // 4. Hämta böcker av specifik författare
     @GetMapping("/by-author")
     public List<Book> getBooksByAuthor(@RequestParam String name) {
         return bookService.getBooksByAuthor(name);
     }
 
-    // 5. Hämta böcker sorterade på rating
     @GetMapping("/sorted-by-rating")
     public List<Book> getBooksSortedByRating() {
         return bookService.getBooksSortedByRating();
@@ -55,7 +50,6 @@ public class BookController {
     }
 
 
-    // 🔴 Felhantering – returnera 404 vid NoSuchElementException
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<String> handleNotFound(NoSuchElementException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
